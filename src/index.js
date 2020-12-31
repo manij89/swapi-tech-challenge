@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Store from './context/Store';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
-import './index.scss';
+import '../src/styles/index.scss';
 
 ReactDOM.render(
   <StrictMode>

@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, Suspense } from 'react';
 import Navbar from '../components/Navbar/NavBar';
-import { Flex, SimpleGrid } from '@chakra-ui/react';
-import * as apiClient from '../services/apiClient';
+import * as apiClient from '../helpers/apiClient';
 import { Context } from '../context/Store';
-import MovieTile from '../components/MovieTile';
+import MovieList from '../components/MovieList/MovieList';
 
 export default function Home(props) {
   const [state, dispatch] = useContext(Context);
@@ -19,18 +18,9 @@ export default function Home(props) {
   const { allFilms } = state;
   return (
     <>
-      <Navbar />
       {/* //TODO implement spinner */}
       <Suspense fallback="Loading...">
-        <Flex h="90vh" overflowX="scroll" overflowY="hidden" flexWrap='nowrap' >
-          {allFilms.length &&
-            allFilms.map(film => 
-              <>
-            <MovieTile key={film.title} film={film} />
-            <MovieTile key={film.title} film={film} />
-            </>
-            )}
-        </Flex>
+        <MovieList films={allFilms} />
       </Suspense>
     </>
   );

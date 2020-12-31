@@ -1,7 +1,7 @@
 $icon-size:80px;
 $w: 375px;
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
 @mixin lightsaber($color){
   background:mix($color,#fff,10%);
@@ -12,13 +12,6 @@ $w: 375px;
   }
 }
 
-html, body {
-  background:#222;
-}
-
-* {
-  box-sizing:border-box;
-}
 
 #container {
   width: $icon-size;
@@ -128,10 +121,10 @@ html, body {
   &.show {
     transform:translatex(0%);
   }
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Audiowide', cursive;
   color:white;
   position:absolute;
-  transform:translatex(-100%);
+  transform:translatex(-150%);
   transition:transform 0.2s ease;
   top:$icon-size;
   bottom:0px;

@@ -15,6 +15,11 @@ const Reducer = (state, action) => {
         ...state,
         favoriteCharacters: action.payload,
       };
+    case 'SET_CLICKED_FILM':
+      return {
+        ...state,
+        clickedFilm: action.payload,
+      };
     case 'SET_LOADING':
       return {
         ...state,

@@ -6,8 +6,8 @@ import { Link} from 'react-router-dom';
 export default function Hamburger(props) {
   const [open, setOpen] = useState(false);
   const { colorMode } = useColorMode();
-  const bgColor = { light: 'gray.300', dark: 'gray.900' };
-  const textColor = { light: 'gray.600', dark: 'gray.100' };
+  const bgColor = { light: 'green.200', dark: 'gray.900' };
+  const textColor = { light: 'green.600', dark: 'gray.100' };
 
   const handleClick = e => {
     setOpen(!open);
@@ -22,14 +22,13 @@ export default function Hamburger(props) {
         </Box>
       </Box>
 
-      <Box as='nav' className={open ? 'show nav' : 'nav'}>
+      <Box as='nav' zIndex={2} className={open ? 'show nav' : 'nav'}>
         <Stack
           as="ul"
           bgColor={bgColor[colorMode]}
           color={textColor[colorMode]}
-          listStyleType="none"
-          mx="0"
           w="100vw"
+          h='90vh'
         >
           <Box as="li" className="green">
             <Link to="/">Home</Link>
