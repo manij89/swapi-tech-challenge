@@ -36,7 +36,8 @@ export default function MovieTile({ film, handleSave }) {
   return (
     <Box
       w={['375px', '350px', '280px', '280px']}
-      h={['90%', '90%', '65%', '65%']}
+      h={['90%', '90%', '50%', '50%']}
+      minHeight='320px'
       mx="10px"
       my={['10px', '15px', '40px', '40px']}
       rounded="md"
@@ -51,7 +52,7 @@ export default function MovieTile({ film, handleSave }) {
           alt="star wars poster"
           objectFit="fill"
           w="100%"
-          h="80%"
+          h={["80%", "80%", "70%", "70"]}
           onClick={handleClick}
         />
       )}
@@ -62,10 +63,10 @@ export default function MovieTile({ film, handleSave }) {
             Episode {+film.episode_id}
           </Badge>
         </Stack>
-        <Flex alignItems="center" justifyContent="space-between">
+        <Flex alignItems="flex-start" justifyContent="space-between">
           <Text
             as="h2"
-            fontWeight="semibold"
+            fontWeight="bold"
             fontSize="lg"
             my={2}
             color={textColor[colorMode]}

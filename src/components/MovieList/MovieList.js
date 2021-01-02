@@ -7,12 +7,18 @@ import { Context } from '../../context/Store';
 export default function Movielist({ films }) {
   const [state, dispatch] = useContext(Context);
 
-  const handleSave = (film) => {
-    handleSaveFilm(film, state.favoriteFilms, dispatch)
-  }
+  const handleSave = film => {
+    handleSaveFilm(film, state.favoriteFilms, dispatch);
+  };
 
   return (
-    <Flex mx='10px' h="90vh" overflowX="scroll" overflowY="hidden" flexWrap="nowrap">
+    <Flex
+      mx="10px"
+      h="90vh"
+      overflowX="scroll"
+      overflowY="hidden"
+      flexWrap="nowrap"
+    >
       {films.length &&
         films.map(film => (
           <>

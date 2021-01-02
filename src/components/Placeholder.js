@@ -1,12 +1,10 @@
 import React from 'react';
 import { Flex, Image, Text, useColorMode} from '@chakra-ui/react';
-
+import {bgColor, textColor} from '../styles/colorModes';
 
 export default function Placeholder({message, Yoda}) {
 
   const { colorMode } = useColorMode();
-  const bgColor = { light: 'green.100', dark: 'gray.700' };
-  const textColor = { light: 'gray.500', dark: 'gray.100' };
 
   return (
     <Flex
@@ -23,7 +21,7 @@ export default function Placeholder({message, Yoda}) {
     >
       <Image src={Yoda} alt="baby yoda" />
       <Text
-        fontSize="2xl"
+        fontSize="xl"
         p="5px"
         textAlign="center"
         color={textColor[colorMode]}

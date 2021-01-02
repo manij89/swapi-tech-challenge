@@ -11,7 +11,7 @@ export default function SaveIcon({ handleSave, list, target }) {
     <>
       <IconButton
         size="lg"
-        variant=''ghost
+        variant='ghost'
         fontSize="1.7em"
         aria-label="Save"
         colorScheme={starColor[colormode]} 

@@ -11,10 +11,11 @@ export const handleSaveFilm = (film, list, dispatch) => {
 
 export const handleSaveCharacter = (char, list, dispatch) => {
   const newList = [...list];
-  const index = newList.indexOf(char)
+  const index = newList.indexOf(char);
   if (newList.some(item => item.name === char.name)) newList.splice(index, 1)
   else newList.push(char);
-  dispatch({type:'SET_FAV_CHARACTER', payload: newList});
-  ls.set('favChar', newList)
+  dispatch({type:'SET_FAV_CHARACTERS', payload: newList});
+  ls.set('favChar', newList);
+  
 }
 

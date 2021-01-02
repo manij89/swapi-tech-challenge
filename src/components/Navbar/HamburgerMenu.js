@@ -6,8 +6,8 @@ import { Link} from 'react-router-dom';
 export default function Hamburger(props) {
   const [open, setOpen] = useState(false);
   const { colorMode } = useColorMode();
-  const bgColor = { light: 'green.200', dark: 'gray.900' };
-  const textColor = { light: 'green.600', dark: 'gray.100' };
+  const bgColor = { light: 'white', dark: 'gray.900' };
+  const textColor = { light: 'teal.500', dark: 'gray.100' };
 
   const handleClick = e => {
     setOpen(!open);

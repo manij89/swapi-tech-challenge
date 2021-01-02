@@ -4,10 +4,13 @@ import Reducer from './Reducer';
 
 const initialState = {
   allFilms: [],
+  allImages: [],
+  characterDetails: [],
   favoriteFilms: [],
   favoriteCharacters: [],
   clickedFilm: {},
-  loading: false,
+  clickedChar: {},
+  loading: true,
 };
 
 const Store = ({ children }) => {

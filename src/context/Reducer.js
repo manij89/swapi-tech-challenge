@@ -5,6 +5,17 @@ const Reducer = (state, action) => {
         ...state,
         allFilms: action.payload,
       };
+    case 'SET_CHAR_IMAGES':
+      return {
+        ...state,
+        allImages: action.payload,
+      };
+    case 'SET_CHAR':
+      const prev = [...state.characterDetails];
+      return {
+        ...state,
+        characterDetails: [...prev, action.payload],
+      };
     case 'SET_FAV_FILMS':
       return {
         ...state,
@@ -19,6 +30,11 @@ const Reducer = (state, action) => {
       return {
         ...state,
         clickedFilm: action.payload,
+      };
+    case 'SET_CLICKED_CHAR':
+      return {
+        ...state,
+        clickedChar: action.payload,
       };
     case 'SET_LOADING':
       return {

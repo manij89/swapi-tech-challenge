@@ -22,7 +22,8 @@ export default function FavFilms() {
       {state.favoriteFilms.length ? (
         <MovieList films={state.favoriteFilms} />
       ) : (
-        <Placeholder Yoda={Yoda} message={'No favorite films yet you have. Yes, hrrmmm.'} />
+        <Placeholder Yoda={Yoda} 
+        message={'No favorite films yet you have. Yes, hrrmmm.'} />
       )}
     </Center>
   );
