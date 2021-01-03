@@ -24,7 +24,7 @@ export default function MovieTile({ film, handleSave }) {
     import(`../../images/${film.episode_id}.jpg`).then(image =>
       setPoster(image.default)
     );
-  }, []);
+  }, [film.episode_id]);
 
   const handleClick = () => {
     dispatch({type: 'SET_LOADING', payload: true})

@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useCallback } from 'react';
 import { Context } from '../context/Store';

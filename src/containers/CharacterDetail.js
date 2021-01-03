@@ -1,17 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useRef } from 'react';
 import {
   Center,
   Image,
   Box,
-  Stack,
-  Badge,
+  // Stack,
+  // Badge,
   Text,
   Button,
   useColorMode,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { Context } from '../context/Store';
-import { bgColor, textColor, bagdeBg } from '../styles/colorModes';
+import { bgColor, textColor} from '../styles/colorModes';
 import { handleSaveCharacter } from '../helpers/utils';
 
 export default function Characterdetail({ name }) {
