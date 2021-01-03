@@ -1,18 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useRef, useCallback } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import {
   Center,
   Image,
   Box,
   Link,
   // Stack,
-  // Badge,
+  Badge,
   Text,
   Button,
   useColorMode,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
-import * as apiClient from '../helpers/apiClient';
 import { Context } from '../context/Store';
 import { bgColor, textColor } from '../styles/colorModes';
 import { handleSaveCharacter } from '../helpers/utils';
@@ -37,11 +36,23 @@ export default function Characterdetail({ name }) {
           image: extraInfoChar.image,
           wiki: extraInfoChar.wiki,
         },
-      });
+      })
+      const characterFilms = state.allFilms.filter(f => f.url === currChar.current.films)
+     
+      console.log(currChar.current.films, characterFilms);
+      ;
     } else {
       history.goBack();
     }
   };
+
+  const getCharMovies = () => {
+    console.log('in char movies')
+    const list = [...state.clickedChar.films]
+    const result = list.map(f => {console.log(f); list.includes(f)});
+    console.log(result);
+
+  }
 
   useEffect(() => {
     dispatch({ type: 'SET_LOADING', payload: true });
@@ -49,13 +60,6 @@ export default function Characterdetail({ name }) {
     dispatch({ type: 'SET_LOADING', payload: false });
   }, []);
 
-  useEffect(() => {
-    if (!state.loading && state.characterDetails.length === 0) {
-      !!state.clickedChar.name && 
-      (state.clickedChar.films.map(f => state.clickedChar.films.includes(f) );
-      console.log(result))
-    }
-  }, [state.clickedFilm]);
 
   return (
     <>
@@ -92,9 +96,9 @@ export default function Characterdetail({ name }) {
               More info: <Link>{extraInfoChar.current.wiki}</Link>
             </Text>
             <Box my={2}>
-            {characters.map(char => (
+            {state.clickedChar.films.map(f => (
               <Badge
-                key={char.name}
+                key={f.title}
                 variant="subtle"
                 rounded="full"
                 fontSize={13}
@@ -102,9 +106,9 @@ export default function Characterdetail({ name }) {
                 p={1}
                 _hover={{ boxShadow: 'md', cursor: 'pointer' }}
                 _active={{ boxShadow: 'lg' }}
-                onClick={() => history.push(`/character/${char.name}`)}
+                onClick={() => history.push(`/filmDetails/${f.episode_id}`)}
               >
-                {char.name}
+                {f.title}
               </Badge>
             ))}
           </Box>
