@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useCallback } from 'react';
 import {
   Center,
   Image,
   Box,
+  Link,
   // Stack,
   // Badge,
   Text,
@@ -11,8 +12,9 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
+import * as apiClient from '../helpers/apiClient';
 import { Context } from '../context/Store';
-import { bgColor, textColor} from '../styles/colorModes';
+import { bgColor, textColor } from '../styles/colorModes';
 import { handleSaveCharacter } from '../helpers/utils';
 
 export default function Characterdetail({ name }) {
@@ -47,6 +49,14 @@ export default function Characterdetail({ name }) {
     dispatch({ type: 'SET_LOADING', payload: false });
   }, []);
 
+  useEffect(() => {
+    if (!state.loading && state.characterDetails.length === 0) {
+      !!state.clickedChar.name && 
+      (state.clickedChar.films.map(f => state.clickedChar.films.includes(f) );
+      console.log(result))
+    }
+  }, [state.clickedFilm]);
+
   return (
     <>
       {state.loading ? (
@@ -78,10 +88,10 @@ export default function Characterdetail({ name }) {
             >
               {name}
             </Text>
-            {/* <Text color={textColor[colorMode]} fontWeight="light" fontSize="md">
-            {opening_crawl}
-          </Text> */}
-            {/* <Box my={2}>
+            <Text color={textColor[colorMode]} fontWeight="light" fontSize="md">
+              More info: <Link>{extraInfoChar.current.wiki}</Link>
+            </Text>
+            <Box my={2}>
             {characters.map(char => (
               <Badge
                 key={char.name}
@@ -97,7 +107,7 @@ export default function Characterdetail({ name }) {
                 {char.name}
               </Badge>
             ))}
-          </Box> */}
+          </Box>
             <Box textAlign="center">
               <Button
                 size="lg"
