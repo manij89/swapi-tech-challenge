@@ -1,69 +1,65 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Center,
   Image,
   Box,
   Link,
-  // Stack,
   Badge,
+  UnorderedList,
+  ListItem,
   Text,
   Button,
   useColorMode,
 } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
+import ls from 'local-storage';
+import { useHistory, Link as ReachLink } from 'react-router-dom';
 import { Context } from '../context/Store';
 import { bgColor, textColor } from '../styles/colorModes';
 import { handleSaveCharacter } from '../helpers/utils';
 
 export default function Characterdetail({ name }) {
   const [state, dispatch] = useContext(Context);
+  const [charFilms, setCharFilms] = useState([]);
   const history = useHistory();
   const { colorMode } = useColorMode();
-  const currChar = useRef(
-    state.characterDetails.find(char => char.name === name)
-  );
-  const extraInfoChar = useRef(
-    state.allImages.find(char => char.name === name)
-  );
-
-  const getCharInfo = () => {
-    if (state.characterDetails.length && state.allImages.length) {
-      dispatch({
-        type: 'SET_CLICKED_CHAR',
-        payload: {
-          ...currChar.current,
-          image: extraInfoChar.image,
-          wiki: extraInfoChar.wiki,
-        },
-      })
-      const characterFilms = state.allFilms.filter(f => f.url === currChar.current.films)
-     
-      console.log(currChar.current.films, characterFilms);
-      ;
-    } else {
-      history.goBack();
-    }
-  };
 
   const getCharMovies = () => {
-    console.log('in char movies')
-    const list = [...state.clickedChar.films]
-    const result = list.map(f => {console.log(f); list.includes(f)});
-    console.log(result);
+    const list = [...state.allFilms] || ls.get('allFilms');
+    const result = list.filter(f => state.clickedChar.films.includes(f.url));
+    setCharFilms(result);
+  };
 
-  }
+  const handleClick = film => {
+    import(`../images/${film.episode_id}.jpg`).then(image =>
+      dispatch({
+        type: 'SET_CLICKED_FILM',
+        payload: { ...film, poster: image.default },
+      })
+    );
+  };
 
   useEffect(() => {
     dispatch({ type: 'SET_LOADING', payload: true });
-    getCharInfo();
+    if (state.clickedChar.name) {
+      getCharMovies();
+    } else {
+      history.goBack();
+    }
     dispatch({ type: 'SET_LOADING', payload: false });
-  }, []);
+  }, [state.clickedChar]);
 
-
+  const {
+    image,
+    wiki,
+    height,
+    hair_color,
+    skin_color,
+    birth_year,
+  } = state.clickedChar;
   return (
     <>
-      {state.loading ? (
+      {state.loading && !image ? (
         'loading...'
       ) : (
         <Center
@@ -77,7 +73,7 @@ export default function Characterdetail({ name }) {
         >
           <Image
             m="10px"
-            src={extraInfoChar.current.image}
+            src={image}
             alt={name}
             h="auto"
             w={['60%', '50%', '50%', '50%']}
@@ -92,26 +88,35 @@ export default function Characterdetail({ name }) {
             >
               {name}
             </Text>
-            <Text color={textColor[colorMode]} fontWeight="light" fontSize="md">
-              More info: <Link>{extraInfoChar.current.wiki}</Link>
-            </Text>
+            <UnorderedList listStyleType="none">
+              <ListItem>Height: {height}</ListItem>
+              <ListItem>Hair Color: {hair_color}</ListItem>
+              <ListItem>Skin: {skin_color}</ListItem>
+              <ListItem>Birth year: {birth_year}</ListItem>
+              <ListItem>
+                More info: <Link>{wiki}</Link>
+              </ListItem>
+            </UnorderedList>
+
             <Box my={2}>
-            {state.clickedChar.films.map(f => (
-              <Badge
-                key={f.title}
-                variant="subtle"
-                rounded="full"
-                fontSize={13}
-                m={1}
-                p={1}
-                _hover={{ boxShadow: 'md', cursor: 'pointer' }}
-                _active={{ boxShadow: 'lg' }}
-                onClick={() => history.push(`/filmDetails/${f.episode_id}`)}
-              >
-                {f.title}
-              </Badge>
-            ))}
-          </Box>
+              {charFilms.map(f => (
+                <Link as={ReachLink} to={`/film/${f.episode_id}`}>
+                  <Badge
+                    key={f.title}
+                    variant="subtle"
+                    rounded="full"
+                    fontSize={13}
+                    m={1}
+                    p={1}
+                    _hover={{ boxShadow: 'md', cursor: 'pointer' }}
+                    _active={{ boxShadow: 'lg' }}
+                    onClick={() => handleClick(f)}
+                  >
+                    {f.title}
+                  </Badge>
+                </Link>
+              ))}
+            </Box>
             <Box textAlign="center">
               <Button
                 size="lg"

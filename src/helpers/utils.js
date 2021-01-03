@@ -14,7 +14,7 @@ export const handleSaveCharacter = (char, list, dispatch) => {
   const index = newList.indexOf(char);
   if (newList.some(item => item.name === char.name)) newList.splice(index, 1)
   else newList.push(char);
-  dispatch({type:'SET_FAV_CHARACTERS', payload: newList});
+  dispatch({type:'SET_FAV_CHAR', payload: newList});
   ls.set('favChar', newList);
   
 }

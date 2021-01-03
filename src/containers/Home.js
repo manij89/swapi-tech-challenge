@@ -1,6 +1,6 @@
 import React, { useContext, Suspense } from 'react';
 import { Context } from '../context/Store';
-import MovieList from '../components/MovieList/MovieList';
+import ListContainer from '../components/ListContainer/ListContainer';
 
 export default function Home(props) {
 
@@ -10,7 +10,7 @@ export default function Home(props) {
     <>
       {/* //TODO implement spinner */}
       <Suspense  fallback="Loading...">
-        <MovieList films={allFilms} />
+        <ListContainer data={allFilms} />
       </Suspense>
     </>
   );

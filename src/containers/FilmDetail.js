@@ -40,7 +40,6 @@ export default function Filmdetail({ episode_id }) {
       const films = ls.get('allFilms');
       dispatch({ type: 'SET_ALL_FILMS', payload: films });
       const selectedFilm = films.find(f => +f.episode_id === +episode_id);
-
       if (!!selectedFilm) {
         import(`../images/${selectedFilm.episode_id}.jpg`).then(image =>
           dispatch({
@@ -53,7 +52,7 @@ export default function Filmdetail({ episode_id }) {
       }
     }
     dispatch({ type: 'SET_LOADING', payload: false });
-  }, []);
+  }, [state.clickedFilm]);
 
   useEffect(() => {
     if (!state.loading && state.characterDetails.length === 0) {
@@ -63,7 +62,15 @@ export default function Filmdetail({ episode_id }) {
 
   const handleClick = char => {
     history.push(`/character/${char.name}`);
-    dispatch({ type: 'SET_CLICKED_CHAR', payload: char });
+    const extraInfoChar = state.allImages.find(c => c.name === char.name);
+    dispatch({
+      type: 'SET_CLICKED_CHAR',
+      payload: {
+        ...char,
+        image: extraInfoChar.image,
+        wiki: extraInfoChar.wiki,
+      },
+    });
   };
 
   const { poster, title, opening_crawl, director } = state.clickedFilm;

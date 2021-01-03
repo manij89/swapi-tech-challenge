@@ -5,18 +5,17 @@ import {
   Badge,
   Text,
   Stack,
+  Link,
   useColorMode,
   Flex,
 } from '@chakra-ui/react';
-import {bgColor, textColor, bagdeBg} from '../../styles/colorModes';
+import { Link as ReachLink} from 'react-router-dom';
+import { bgColor, textColor, bagdeBg } from '../../styles/colorModes';
 import SaveIcon from './SaveIcon';
 import { Context } from '../../context/Store';
-import { useHistory } from 'react-router-dom';
 
 export default function MovieTile({ film, handleSave }) {
-
   const { colorMode } = useColorMode();
-  const history = useHistory();
   const [state, dispatch] = useContext(Context);
   const [poster, setPoster] = useState('');
 
@@ -27,17 +26,19 @@ export default function MovieTile({ film, handleSave }) {
   }, [film.episode_id]);
 
   const handleClick = () => {
-    dispatch({type: 'SET_LOADING', payload: true})
-    dispatch({type:'SET_CLICKED_FILM', payload: {...film, poster: poster}});
-    history.push(`/filmDetails/${film.episode_id}`)
-    dispatch({type: 'SET_LOADING', payload: false})
-  }
+    dispatch({ type: 'SET_LOADING', payload: true });
+    dispatch({
+      type: 'SET_CLICKED_FILM',
+      payload: { ...film, poster: poster },
+    });
+    dispatch({ type: 'SET_LOADING', payload: false });
+  };
 
   return (
     <Box
       w={['375px', '350px', '280px', '280px']}
       h={['90%', '90%', '50%', '50%']}
-      minHeight='320px'
+      minHeight="320px"
       mx="10px"
       my={['10px', '15px', '40px', '40px']}
       rounded="md"
@@ -47,14 +48,16 @@ export default function MovieTile({ film, handleSave }) {
       bg={bgColor[colorMode]}
     >
       {poster && (
-        <Image
-          src={poster}
-          alt="star wars poster"
-          objectFit="fill"
-          w="100%"
-          h={["80%", "80%", "70%", "70"]}
-          onClick={handleClick}
-        />
+        <Link as={ReachLink} to={`/film/${film.episode_id}`}>
+          <Image
+            src={poster}
+            alt="star wars poster"
+            objectFit="fill"
+            w="100%"
+            h={['80%', '80%', '70%', '70']}
+            onClick={handleClick}
+          />
+        </Link>
       )}
 
       <Box p={5}>

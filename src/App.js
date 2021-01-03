@@ -43,7 +43,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route
           exact
-          path="/filmDetails/:id"
+          path="/film/:id"
           render={routeProps => (
             <>
               <FilmDetail episode_id={routeProps.match.params.id} />

@@ -21,7 +21,7 @@ const Reducer = (state, action) => {
         ...state,
         favoriteFilms: action.payload,
       };
-    case 'SET_FAV_CHARACTERS':
+    case 'SET_FAV_CHAR':
       return {
         ...state,
         favoriteCharacters: action.payload,
