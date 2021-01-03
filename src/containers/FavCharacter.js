@@ -8,6 +8,7 @@ import Placeholder from '../components/Placeholder';
 import Yoda from '../images/Yoda2.jpg';
 
 export default function FavFilms() {
+
   const [state, dispatch] = useContext(Context);
 
   useEffect(() => {

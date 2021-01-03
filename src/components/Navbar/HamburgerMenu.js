@@ -34,7 +34,7 @@ export default function Hamburger(props) {
             <Link to="/">Home</Link>
           </Box>
           <Box as="li" className="red">
-            <Link to="/favfilms">Favorite Films</Link>
+            <Link to="/favFilms">Favorite Films</Link>
           </Box>
           <Box as="li" className="blue">
             <Link to="/favcharacter">Favorite Characters</Link>

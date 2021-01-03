@@ -133,6 +133,7 @@ export default function Filmdetail({ episode_id }) {
                   variant="subtle"
                   rounded="full"
                   fontSize={13}
+                  color={textColor[colorMode]}
                   m={1}
                   p={1}
                   _hover={{ boxShadow: 'md', cursor: 'pointer' }}
@@ -147,6 +148,8 @@ export default function Filmdetail({ episode_id }) {
               <Button
                 size="lg"
                 mt={3}
+                color='white'
+                bg={bagdeBg[colorMode]}
                 boxShadow="sm"
                 onClick={() =>
                   handleSaveFilm(
