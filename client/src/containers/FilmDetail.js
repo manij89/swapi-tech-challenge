@@ -18,6 +18,7 @@ import { bagdeBg, bgColor, textColor } from '../styles/colorModes';
 import { handleSaveFilm } from '../helpers/utils';
 import * as apiClient from '../helpers/apiClient';
 import { useHistory } from 'react-router-dom';
+import placeholder from '../images/ligthST.svg'
 
 export default function Filmdetail({ episode_id }) {
   const [state, dispatch] = useContext(Context);
@@ -82,7 +83,7 @@ export default function Filmdetail({ episode_id }) {
   const { poster, title, opening_crawl, director} = state.clickedFilm;
   return (
     <>
-      { (!poster || state.loading) 
+      { (state.loading) 
       ? (
        <Spinner />
       ) : (
@@ -98,6 +99,7 @@ export default function Filmdetail({ episode_id }) {
           <Image
             m="10px"
             src={poster}
+            fallbackSrc={placeholder}
             alt={title}
             h="auto"
             w={['60%', '50%', '50%', '50%']}

@@ -18,6 +18,7 @@ import { useHistory, Link as ReachLink } from 'react-router-dom';
 import { Context } from '../context/Store';
 import { bagdeBg, bgColor, textColor } from '../styles/colorModes';
 import { handleSaveCharacter } from '../helpers/utils';
+import placeholder from '../images/ligthST.svg'
 
 export default function Characterdetail({ name }) {
   const [state, dispatch] = useContext(Context);
@@ -75,6 +76,7 @@ export default function Characterdetail({ name }) {
           <Image
             m="10px"
             src={image}
+            fallbackSrc={placeholder}
             alt={name}
             h="auto"
             w={['60%', '50%', '50%', '50%']}

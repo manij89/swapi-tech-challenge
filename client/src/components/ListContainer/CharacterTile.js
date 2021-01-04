@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { Box, Image, Text, Link, useColorMode, Flex } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
+import Spinner from '../../components/Spinner';
 import { bgColor, textColor } from '../../styles/colorModes';
 import SaveIcon from './SaveIcon';
 import { Context } from '../../context/Store';
+import placeholder from '../../images/ligthST.svg';
 
 export default function CharacterTile({ character, handleSave }) {
   const [state, dispatch] = useContext(Context);
@@ -19,46 +21,52 @@ export default function CharacterTile({ character, handleSave }) {
   };
 
   return (
-    <Box
-      w={['375px', '350px', '280px', '280px']}
-      h={['90%', '90%', '50%', '50%']}
-      minHeight="320px"
-      mx="10px"
-      my={['10px', '15px', '40px', '40px']}
-      rounded="md"
-      flexShrink="0"
-      overflow="hidden"
-      boxShadow="md"
-      bg={bgColor[colorMode]}
-    >
-      {character.image && (
-        <Link as={ReachLink} to={`/character/${character.name}`}>
-          <Image
-            src={character.image}
-            alt={character.name}
-            objectFit="fill"
-            w="100%"
-            h={['80%', '80%', '70%', '70']}
-            onClick={handleClick}
-          />
-        </Link>
-      )}
-      <Flex alignItems="flex-start" justifyContent="space-between" p={5}>
-        <Text
-          as="h2"
-          fontWeight="bold"
-          fontSize="lg"
-          my={2}
-          color={textColor[colorMode]}
+    <>
+      {state.loading ? (
+        <Spinner />
+      ) : (
+        <Box
+          w={['350px', '350px', '280px', '280px']}
+          h={['90%', '90%', '50%', '50%']}
+          minHeight="320px"
+          mx="10px"
+          my={['10px', '15px', '40px', '40px']}
+          rounded="md"
+          flexShrink="0"
+          overflow="hidden"
+          boxShadow="md"
+          bg={bgColor[colorMode]}
         >
-          {character.name}
-        </Text>
-        <SaveIcon
-          handleSave={() => handleSave()}
-          target={character}
-          list={state.favoriteCharacters}
-        />
-      </Flex>
-    </Box>
+          <Link as={ReachLink} to={`/character/${character.name}`}>
+            <Image
+              src={character.image}
+              fallbackSrc={placeholder}
+              alt={character.name}
+              objectFit="fill"
+              w="100%"
+              h={['80%', '80%', '70%', '70']}
+              onClick={handleClick}
+            />
+          </Link>
+
+          <Flex alignItems="flex-start" justifyContent="space-between" p={5}>
+            <Text
+              as="h2"
+              fontWeight="bold"
+              fontSize="lg"
+              my={2}
+              color={textColor[colorMode]}
+            >
+              {character.name}
+            </Text>
+            <SaveIcon
+              handleSave={() => handleSave()}
+              target={character}
+              list={state.favoriteCharacters}
+            />
+          </Flex>
+        </Box>
+      )}
+    </>
   );
 }

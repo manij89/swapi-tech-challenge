@@ -13,6 +13,7 @@ import { Link as ReachLink} from 'react-router-dom';
 import { bgColor, textColor, bagdeBg } from '../../styles/colorModes';
 import SaveIcon from './SaveIcon';
 import { Context } from '../../context/Store';
+import placeholder from '../../images/ligthST.svg'
 
 export default function MovieTile({ film, handleSave }) {
   const { colorMode } = useColorMode();
@@ -26,12 +27,10 @@ export default function MovieTile({ film, handleSave }) {
   }, [film.episode_id]);
 
   const handleClick = () => {
-    dispatch({ type: 'SET_LOADING', payload: true });
     dispatch({
       type: 'SET_CLICKED_FILM',
       payload: { ...film, poster: poster },
     });
-    dispatch({ type: 'SET_LOADING', payload: false });
   };
 
   return (
@@ -51,6 +50,7 @@ export default function MovieTile({ film, handleSave }) {
         <Link as={ReachLink} to={`/film/${film.episode_id}`}>
           <Image
             src={poster}
+            fallbackSrc={placeholder}
             alt="star wars poster"
             objectFit="fill"
             w="100%"
