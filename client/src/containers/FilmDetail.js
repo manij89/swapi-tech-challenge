@@ -18,12 +18,13 @@ import { bagdeBg, bgColor, textColor } from '../styles/colorModes';
 import { handleSaveFilm } from '../helpers/utils';
 import * as apiClient from '../helpers/apiClient';
 import { useHistory } from 'react-router-dom';
-import placeholder from '../images/ligthST.svg'
+import placeholder from '../images/ligthST.svg';
 
 export default function Filmdetail({ episode_id }) {
   const [state, dispatch] = useContext(Context);
   const { colorMode } = useColorMode();
   const history = useHistory();
+
 
   const getCharacters = useCallback(() => {
     state.clickedFilm.characters.map(char => {
@@ -54,15 +55,14 @@ export default function Filmdetail({ episode_id }) {
           history.push('/');
         }
       } else {
-        history.push('/')
+        history.push('/');
       }
     }
-
     dispatch({ type: 'SET_LOADING', payload: false });
-  }, [state.clickedFilm]);
+  }, [state.allFilms]);
 
   useEffect(() => {
-    if (!state.loading && state.characterDetails.length === 0) {
+    if (state.clickedFilm && state.characterDetails.length === 0) {
       !!state.clickedFilm.title && getCharacters();
     }
   }, [state.clickedFilm]);
@@ -80,12 +80,11 @@ export default function Filmdetail({ episode_id }) {
     });
   };
 
-  const { poster, title, opening_crawl, director} = state.clickedFilm;
+  const { poster, title, opening_crawl, director } = state.clickedFilm;
   return (
     <>
-      { (state.loading) 
-      ? (
-       <Spinner />
+      {state.loading ? (
+        <Spinner />
       ) : (
         <Center
           flexDirection={['column', 'column', 'row', 'row']}
@@ -96,15 +95,18 @@ export default function Filmdetail({ episode_id }) {
           boxShadow="lg"
           bg={bgColor[colorMode]}
         >
-          <Image
-            m="10px"
-            src={poster}
-            fallbackSrc={placeholder}
-            alt={title}
-            h="auto"
-            w={['60%', '50%', '50%', '50%']}
-          />
-          <Box p={5} w="100%">
+          <Box w={['80vw', '60vw', '50vw', '50vw']}>
+            <Image
+              m="10px"
+              src={poster}
+              fallbackSrc={placeholder}
+              alt={title}
+              maxHeight="80vh"
+              maxW="500px"
+              w="90%"
+            />
+          </Box>
+          <Box p={5} w={['100%', '100%', '90%', '90%']}>
             <Stack isInline align="baseline">
               <Badge
                 variant="solid"
@@ -157,7 +159,7 @@ export default function Filmdetail({ episode_id }) {
               <Button
                 size="lg"
                 mt={3}
-                color='white'
+                color="white"
                 bg={bagdeBg[colorMode]}
                 boxShadow="sm"
                 onClick={() =>
