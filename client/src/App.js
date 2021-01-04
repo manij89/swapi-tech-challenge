@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useContext} from 'react';
-import {Context} from './context/Store';
-import * as apiClient from './helpers/apiClient';
+import React, { useEffect, useContext } from 'react';
+import { Context } from './context/Store';
 import ls from 'local-storage';
+import * as apiClient from './helpers/apiClient';
 import { ChakraProvider, theme } from '@chakra-ui/react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './containers/Home';
@@ -13,28 +13,27 @@ import CharacterDetail from './containers/CharacterDetail';
 import Navbar from './components/Navbar/NavBar';
 
 function App() {
-
   const [, dispatch] = useContext(Context);
 
   useEffect(() => {
-    apiClient
-      .getMovies()
-      .then(data => {
-        dispatch({ type: 'SET_ALL_FILMS', payload: data.results });
-        ls.set('allFilms', data.results);
-      })
-      .catch((e) => console.error('Problem fetching films', e));
+    const allMovies = ls.get('allFilms');
+    if (!allMovies) {
+      apiClient.getMovies(dispatch);
+    } else {
+      dispatch({ type: 'SET_ALL_FILMS', payload: allMovies });
+    }
+    dispatch({type: 'SET_LOADING', payload: false})
   }, []);
 
   useEffect(() => {
-    apiClient
-    .getCharacterImages()
-    .then(data => {
-      const result = data.map(d => ({name: d.name, image:d.image, wiki: d.wiki}));
-      dispatch({type: 'SET_CHAR_IMAGES', payload: result})
-    })
-    .catch((e) => console.error('Problem fetching character info', e));
-  }, [])
+    const allImages = ls.get('allImages');
+    if(!allImages) {
+      apiClient
+        .getCharacterImages(dispatch);
+    } else {
+      dispatch({type: 'SET_CHAR_IMAGES', payload: allImages});
+    }
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>

@@ -5,6 +5,7 @@ import CharacterTile from './CharacterTile';
 import { handleSaveFilm, handleSaveCharacter } from '../../helpers/utils';
 import { Context } from '../../context/Store';
 
+
 export default function ListContainer({ data }) {
   const [state, dispatch] = useContext(Context);
 
@@ -36,13 +37,14 @@ export default function ListContainer({ data }) {
 
   return (
     <Flex
-      mx="10px"
+      id="background-container"
+      m="10px"
       h="90vh"
       overflowX="scroll"
       overflowY="hidden"
       flexWrap="nowrap"
     >
-      {data.length && dataToDisplay()}
+      {(data.length > 0) && dataToDisplay()}
     </Flex>
   );
 }

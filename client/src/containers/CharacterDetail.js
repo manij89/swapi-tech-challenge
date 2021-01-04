@@ -13,9 +13,10 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import ls from 'local-storage';
+import Spinner from '../components/Spinner';
 import { useHistory, Link as ReachLink } from 'react-router-dom';
 import { Context } from '../context/Store';
-import { bgColor, textColor } from '../styles/colorModes';
+import { bagdeBg, bgColor, textColor } from '../styles/colorModes';
 import { handleSaveCharacter } from '../helpers/utils';
 
 export default function Characterdetail({ name }) {
@@ -59,8 +60,8 @@ export default function Characterdetail({ name }) {
   } = state.clickedChar;
   return (
     <>
-      {state.loading && !image ? (
-        'loading...'
+      {state.loading ? (
+        <Spinner />
       ) : (
         <Center
           flexDirection={['column', 'column', 'row', 'row']}
@@ -121,6 +122,8 @@ export default function Characterdetail({ name }) {
               <Button
                 size="lg"
                 mt={3}
+                color='white'
+                bg={bagdeBg[colorMode]}
                 boxShadow="sm"
                 onClick={() =>
                   handleSaveCharacter(

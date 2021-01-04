@@ -5,11 +5,16 @@ import HamburgerMenu from './HamburgerMenu';
 
 export default function Navbar(props) {
   return (
-    <Flex h="10vh" justifyContent="space-between" alignItems="center">
+    <Flex
+      h="10vh"
+      justifyContent="space-between"
+      alignItems="center"
+      backgroundColor="transparent"
+    >
       <Box fontSize="xl">
         <HamburgerMenu />
       </Box>
-      <Text fontFamily="Audiowide, cursive" fontSize={[0, "2xl", "3xl", "3xl"]}>
+      <Text fontFamily="Audiowide, cursive" fontSize={[0, '2xl', '3xl', '3xl']}>
         STAR WARS
       </Text>
       <ColorModeSwitcher justifySelf="flex-end" />

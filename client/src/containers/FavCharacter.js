@@ -12,13 +12,10 @@ export default function FavFilms() {
   const [state, dispatch] = useContext(Context);
 
   useEffect(() => {
-    console.log('state', state)
     const savedCharacters = ls.get('favChar');
-    console.log(savedCharacters);
     if(savedCharacters){
       dispatch({ type: 'SET_FAV_CHAR', payload: savedCharacters });
     }
-    console.log(state);
   }, []);
 
   return (

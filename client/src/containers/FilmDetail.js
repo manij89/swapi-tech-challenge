@@ -13,6 +13,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import ls from 'local-storage';
+import Spinner from '../components/Spinner';
 import { bagdeBg, bgColor, textColor } from '../styles/colorModes';
 import { handleSaveFilm } from '../helpers/utils';
 import * as apiClient from '../helpers/apiClient';
@@ -73,11 +74,12 @@ export default function Filmdetail({ episode_id }) {
     });
   };
 
-  const { poster, title, opening_crawl, director } = state.clickedFilm;
+  const { poster, title, opening_crawl, director} = state.clickedFilm;
   return (
     <>
-      {state.loading ? (
-        <>'Loading...'</>
+      { (!poster || state.loading) 
+      ? (
+       <Spinner />
       ) : (
         <Center
           flexDirection={['column', 'column', 'row', 'row']}
