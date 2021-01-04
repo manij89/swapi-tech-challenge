@@ -17,12 +17,12 @@ test('register snapshot', () => {
   expect(asFragment(<Home />)).toMatchSnapshot()
 })
 
-test('gets the information from API', () => {
+// test('gets the information from API', () => {
 
-  const {getByTestId} =  render(<Home />);
+//   const {getByTestId} =  render(<Home />);
 
-  const list = getByTestId('list-container');
-  expect(dataToDisplay).toHaveBeenCalled();
-  expect(list.children.length).toEqual(6);
-});
+//   const list = getByTestId('list-container');
+//   expect(dataToDisplay).toHaveBeenCalled();
+//   expect(list.children.length).toEqual(6);
+// });
 
