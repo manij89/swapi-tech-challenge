@@ -79,7 +79,7 @@ exports[`register snapshot 1`] = `
   </div>
   <div
     class="css-lr27e3"
-    id="background-container"
+    data-testid="list-container"
   />
 </DocumentFragment>
 `;

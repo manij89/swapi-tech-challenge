@@ -13,7 +13,7 @@ import CharacterDetail from './containers/CharacterDetail';
 import Navbar from './components/Navbar/NavBar';
 
 function App() {
-  const [, dispatch] = useContext(Context);
+  const [_, dispatch] = useContext(Context);
 
   useEffect(() => {
     apiClient.getMovies(dispatch);

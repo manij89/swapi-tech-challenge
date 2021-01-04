@@ -26,6 +26,10 @@ Open [http://localhost:4002](http://localhost:4002) to view it in the browser.
 
 click here for a [live demo](https://swapi-fem.herokuapp.com/)
 
+## Docker
+
+available docker container for the client side on [DockerHub](https://hub.docker.com/repository/docker/manij89/femtasy-ta)
+
 
 
 
