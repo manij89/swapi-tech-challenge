@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext } from 'react';
 import { Context } from './context/Store';
-import ls from 'local-storage';
 import * as apiClient from './helpers/apiClient';
-import { ChakraProvider, theme } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { customTheme } from './styles/colorModes';
 import { Route, Switch } from 'react-router-dom';
 import Home from './containers/Home';
 import FavFilms from './containers/FavFilms';
@@ -16,27 +16,12 @@ function App() {
   const [, dispatch] = useContext(Context);
 
   useEffect(() => {
-    const allMovies = ls.get('allFilms');
-    if (!allMovies) {
-      apiClient.getMovies(dispatch);
-    } else {
-      dispatch({ type: 'SET_ALL_FILMS', payload: allMovies });
-    }
-    dispatch({type: 'SET_LOADING', payload: false})
-  }, []);
-
-  useEffect(() => {
-    const allImages = ls.get('allImages');
-    if(!allImages) {
-      apiClient
-        .getCharacterImages(dispatch);
-    } else {
-      dispatch({type: 'SET_CHAR_IMAGES', payload: allImages});
-    }
+    apiClient.getMovies(dispatch);
+    apiClient.getCharacterImages(dispatch);
   }, []);
 
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={customTheme}>
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />

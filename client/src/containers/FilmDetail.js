@@ -39,19 +39,24 @@ export default function Filmdetail({ episode_id }) {
 
     if (!state.allFilms.length) {
       const films = ls.get('allFilms');
-      dispatch({ type: 'SET_ALL_FILMS', payload: films });
-      const selectedFilm = films.find(f => +f.episode_id === +episode_id);
-      if (!!selectedFilm) {
-        import(`../images/${selectedFilm.episode_id}.jpg`).then(image =>
-          dispatch({
-            type: 'SET_CLICKED_FILM',
-            payload: { ...selectedFilm, poster: image.default },
-          })
-        );
+      if (films) {
+        dispatch({ type: 'SET_ALL_FILMS', payload: films });
+        const selectedFilm = films.find(f => +f.episode_id === +episode_id);
+        if (!!selectedFilm) {
+          import(`../images/${selectedFilm.episode_id}.jpg`).then(image =>
+            dispatch({
+              type: 'SET_CLICKED_FILM',
+              payload: { ...selectedFilm, poster: image.default },
+            })
+          );
+        } else {
+          history.push('/');
+        }
       } else {
-        history.push('/');
+        history.push('/')
       }
     }
+
     dispatch({ type: 'SET_LOADING', payload: false });
   }, [state.clickedFilm]);
 

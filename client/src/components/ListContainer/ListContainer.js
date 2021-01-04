@@ -5,7 +5,6 @@ import CharacterTile from './CharacterTile';
 import { handleSaveFilm, handleSaveCharacter } from '../../helpers/utils';
 import { Context } from '../../context/Store';
 
-
 export default function ListContainer({ data }) {
   const [state, dispatch] = useContext(Context);
 

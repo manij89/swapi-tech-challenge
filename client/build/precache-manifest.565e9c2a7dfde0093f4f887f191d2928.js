@@ -1,31 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c0761e8ccc74909024c3b37c0d7e8c2c",
+    "revision": "84cd842b1487098ecf938d7b14aefd32",
     "url": "/index.html"
   },
   {
-    "revision": "2c660484d9cf016bc5a8",
+    "revision": "6de259d96e361c145991",
     "url": "/static/css/2.f87e9f44.chunk.css"
   },
   {
-    "revision": "3c48cb82a2e0ca573bba",
+    "revision": "bf1eee60a2dc006f9195",
     "url": "/static/css/main.2f569c21.chunk.css"
   },
   {
-    "revision": "60a8082f3f3a0077ffe7",
-    "url": "/static/js/10.413ecafe.chunk.js"
-  },
-  {
-    "revision": "2c660484d9cf016bc5a8",
-    "url": "/static/js/2.ea0351bc.chunk.js"
+    "revision": "6de259d96e361c145991",
+    "url": "/static/js/2.30e6854f.chunk.js"
   },
   {
     "revision": "3c73c585782ac05880c0f89bcfdbba5a",
-    "url": "/static/js/2.ea0351bc.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.30e6854f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "045650a83d7e8604f1e3",
-    "url": "/static/js/3.3a6c1a1c.chunk.js"
+    "revision": "4dd3ee8dc1a208c02751",
+    "url": "/static/js/3.100c0306.chunk.js"
   },
   {
     "revision": "71c3f60dd03f84787035",
@@ -52,12 +48,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/9.9cc2bae5.chunk.js"
   },
   {
-    "revision": "3c48cb82a2e0ca573bba",
-    "url": "/static/js/main.e0d46167.chunk.js"
+    "revision": "bf1eee60a2dc006f9195",
+    "url": "/static/js/main.1416e697.chunk.js"
   },
   {
-    "revision": "38ea94dc49abdbcb4f8a",
-    "url": "/static/js/runtime-main.e431a8a2.js"
+    "revision": "eb7c57f9b81a982a789c",
+    "url": "/static/js/runtime-main.8c1cb2c0.js"
   },
   {
     "revision": "c5e3f8745ae7363a07bedfde0147a190",
@@ -94,10 +90,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "945f9450848a285626544d0a57a5a4a0",
     "url": "/static/media/ligthST.945f9450.svg"
-  },
-  {
-    "revision": "687be2ff5be81fb9839fbf42a69d52f7",
-    "url": "/static/media/stormtrooper.687be2ff.jpg"
   },
   {
     "revision": "cad189e10f73034f8e97ad52726461d0",

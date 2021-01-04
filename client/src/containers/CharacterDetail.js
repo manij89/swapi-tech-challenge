@@ -122,7 +122,7 @@ export default function Characterdetail({ name }) {
               <Button
                 size="lg"
                 mt={3}
-                color='white'
+                color="white"
                 bg={bagdeBg[colorMode]}
                 boxShadow="sm"
                 onClick={() =>

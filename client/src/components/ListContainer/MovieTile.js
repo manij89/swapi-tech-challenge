@@ -36,7 +36,7 @@ export default function MovieTile({ film, handleSave }) {
 
   return (
     <Box
-      w={['375px', '350px', '280px', '280px']}
+      w={['350px', '350px', '280px', '280px']}
       h={['90%', '90%', '50%', '50%']}
       minHeight="320px"
       mx="10px"

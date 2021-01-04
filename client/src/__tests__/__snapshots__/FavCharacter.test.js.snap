@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`register snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-5ysws4"
+  >
+    <div
+      class="css-rkk3mp"
+    >
+      <div
+        class="css-k008qs"
+      >
+        <div
+          class="css-0"
+          id="container"
+        >
+          <div
+            class="false css-0"
+            id="burger"
+          >
+            <div
+              class="bun top css-0"
+            />
+            <div
+              class="filling css-0"
+            />
+            <div
+              class="bun bottom css-0"
+            />
+          </div>
+        </div>
+        <nav
+          class="nav css-lnyvlk"
+        >
+          <ul
+            class="chakra-stack css-uqqhq"
+          >
+            <li
+              class="green css-0"
+            >
+              <a
+                href="/"
+              >
+                Home
+              </a>
+            </li>
+            <li
+              class="red css-0"
+            >
+              <a
+                href="/favFilms"
+              >
+                Favorite Films
+              </a>
+            </li>
+            <li
+              class="blue css-0"
+            >
+              <a
+                href="/favcharacter"
+              >
+                Favorite Characters
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <p
+      class="chakra-text css-19n1896"
+    >
+      STAR WARS
+    </p>
+    <img
+      aria-label="Switch to light mode"
+      class="chakra-image__placeholder css-d25thr"
+    />
+  </div>
+  <div
+    class="css-9iyick"
+  >
+    <div
+      class="css-nghxq"
+    >
+      <img
+        alt="baby yoda"
+        class="chakra-image__placeholder css-0"
+      />
+      <p
+        class="chakra-text css-1lgdejb"
+      >
+        Hrrmmm, Your only favorite I am
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

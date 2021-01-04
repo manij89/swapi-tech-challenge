@@ -3,6 +3,7 @@ import ls from 'local-storage';
 const swapiURL = 'https://swapi.dev/api';
 const starwarsAPI = 'https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api';
 
+
 const fetchRequest = (base, url) =>
   fetch(`${base}/${url}`)
     .then(res => (res.status <= 400 ? res : Promise.reject(res)))
@@ -11,10 +12,10 @@ const fetchRequest = (base, url) =>
       console.log(`${err.message} while fetching /${url}`);
     });
 
-export const getMovies = dispatch =>
+export const getMovies = (fn) =>
   fetchRequest(swapiURL, 'films')
     .then(data => {
-      dispatch({ type: 'SET_ALL_FILMS', payload: data.results });
+      fn({ type: 'SET_ALL_FILMS', payload: data.results });
       ls.set('allFilms', data.results);
     })
     .catch(e => console.error('Problem after getting films', e));
@@ -22,7 +23,7 @@ export const getMovies = dispatch =>
 export const getCharacter = characterId =>
   fetchRequest(swapiURL, `people/${characterId}`);
 
-export const getCharacterImages = dispatch =>
+export const getCharacterImages = (fn) =>
   fetchRequest(starwarsAPI, 'all.json')
     .then(data => {
       const result = data.map(d => ({
@@ -30,7 +31,7 @@ export const getCharacterImages = dispatch =>
         image: d.image,
         wiki: d.wiki,
       }));
-      dispatch({ type: 'SET_CHAR_IMAGES', payload: result });
+      fn({ type: 'SET_CHAR_IMAGES', payload: result });
       ls.set('allImages', result);
     })
     .catch(e => console.error('Problem after getting character info', e));

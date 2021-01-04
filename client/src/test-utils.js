@@ -1,12 +1,44 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { Route, Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 import { ChakraProvider, theme } from '@chakra-ui/react';
+import Store from './context/Store';
 
 const AllProviders = ({ children }) => (
-  <ChakraProvider theme={theme}>{children}</ChakraProvider>
+  <Store>
+    <Router history={history}>
+      <ChakraProvider theme={theme}>{children}</ChakraProvider>
+    </Router>
+  </Store>
 );
 
-const customRender = (ui, options) =>
-  render(ui, { wrapper: AllProviders, ...options });
+const customRender = (
+  ui,
+  {
+    route = '/',
+    history = createMemoryHistory({ initialEntries: [route] }),
+    initialState,
+    store,
+    ...options
+  } = {}
+) => {
+  const Wrapper = ({ children }) => (
+    <Store>
+    <Router history={history}>
+      <ChakraProvider theme={theme}>{children}</ChakraProvider>
+    </Router>
+  </Store>
+  );
+
+  return {
+    ...render(ui, {
+      wrapper: Wrapper,
+      ...options,
+    }),
+    history,
+    store,
+  };
+};
 
 export { customRender as render };
