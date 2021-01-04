@@ -12,7 +12,7 @@ export default function FavFilms() {
 
   useEffect(() => {
     const savedFilms = ls.get('favFilms');
-    if (savedFilms.length) {
+    if (savedFilms) {
       dispatch({ type: 'SET_FAV_FILMS', payload: savedFilms });
     }
   }, []);
