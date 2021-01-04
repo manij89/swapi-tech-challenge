@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 const publicPath = path.join(__dirname, './client/build');
 
 app.use(cors());
