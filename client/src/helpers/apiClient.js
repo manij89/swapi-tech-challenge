@@ -1,37 +1,36 @@
 /* eslint-disable no-console */
-import ls from 'local-storage';
+import axios from 'axios';
 const swapiURL = 'https://swapi.dev/api';
 const starwarsAPI = 'https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api';
 
+export const getMovies = async () => {
+  try {
+    const apiResult = await axios.get(`${swapiURL}/films`);
+    return apiResult;
+  } catch (error) {
+    console.error('Problem after getting films', error);
+  }
+};
 
-const fetchRequest = (base, url) =>
-  fetch(`${base}/${url}`)
-    .then(res => (res.status <= 400 ? res : Promise.reject(res)))
-    .then(res => res.json())
-    .catch(err => {
-      console.log(`${err.message} while fetching /${url}`);
-    });
+export const getCharacterImages = async dispatch => {
+  try {
+    const apiResult = await axios.get(`${starwarsAPI}/all.json`);
+    const charImages = apiResult.data.map(d => ({
+      name: d.name,
+      image: d.image,
+      wiki: d.wiki,
+    }));
+    return charImages;
+  } catch (error) {
+    console.error('Problem after getting character images', error);
+  }
+};
 
-export const getMovies = (fn) =>
-  fetchRequest(swapiURL, 'films')
-    .then(data => {
-      fn({ type: 'SET_ALL_FILMS', payload: data.results });
-      ls.set('allFilms', data.results);
-    })
-    .catch(e => console.error('Problem after getting films', e));
-
-export const getCharacter = characterId =>
-  fetchRequest(swapiURL, `people/${characterId}`);
-
-export const getCharacterImages = (fn) =>
-  fetchRequest(starwarsAPI, 'all.json')
-    .then(data => {
-      const result = data.map(d => ({
-        name: d.name,
-        image: d.image,
-        wiki: d.wiki,
-      }));
-      fn({ type: 'SET_CHAR_IMAGES', payload: result });
-      ls.set('allImages', result);
-    })
-    .catch(e => console.error('Problem after getting character info', e));
+export const getCharacter = async (characterId, dispatch) => {
+  try {
+    const apiResult = await axios.get(`${swapiURL}/people/${characterId}`);
+    dispatch({ type: 'SET_CHAR', payload: apiResult.data });
+  } catch (error) {
+    console.error('Problem after getting character details', error);
+  }
+};

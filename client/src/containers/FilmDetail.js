@@ -30,9 +30,7 @@ export default function Filmdetail({ episode_id }) {
     state.clickedFilm.characters.map(char => {
       const reg = new RegExp(/\d+/);
       const charId = char.match(reg);
-      apiClient
-        .getCharacter(charId)
-        .then(result => dispatch({ type: 'SET_CHAR', payload: result }));
+      apiClient.getCharacter(charId, dispatch);
     });
   }, [state.clickedFilm.characters]);
 

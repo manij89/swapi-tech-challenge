@@ -30,6 +30,17 @@ click here for a [live demo](https://swapi-fem.herokuapp.com/)
 
 available docker container for the client side on [DockerHub](https://hub.docker.com/repository/docker/manij89/femtasy-ta)
 
+## Instrumentation
+
+There are many tools to "instrument your applications", it all depends on what exactly you want to check and measure.
+For instance, Google Analytics can provide great insights in user behaviour and user flow.
+
+A useful way to monitor performance and error tracking is [AppSignal](https://appsignal.com/). It works full stack, as wel for ruby, elixir and Javascript frameworks.
+
+
+
+
+
 
 
 

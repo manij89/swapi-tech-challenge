@@ -1,5 +1,5 @@
-$icon-size:80px;
-$w: 375px;
+$icon-size:70px;
+$w: 350px;
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
@@ -19,6 +19,11 @@ $w: 375px;
   position:absolute;
   top:0%;
   left:0%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#container:focus-visible {
+  outline:none
 }
 
 #burger {

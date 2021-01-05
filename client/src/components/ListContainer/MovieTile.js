@@ -4,16 +4,15 @@ import {
   Image,
   Badge,
   Text,
-  Stack,
   Link,
   useColorMode,
   Flex,
 } from '@chakra-ui/react';
-import { Link as ReachLink} from 'react-router-dom';
+import { Link as ReachLink } from 'react-router-dom';
 import { bgColor, textColor, bagdeBg } from '../../styles/colorModes';
 import SaveIcon from './SaveIcon';
 import { Context } from '../../context/Store';
-import placeholder from '../../images/ligthST.svg'
+import placeholder from '../../images/ligthST.svg';
 
 export default function MovieTile({ film, handleSave }) {
   const { colorMode } = useColorMode();
@@ -35,9 +34,8 @@ export default function MovieTile({ film, handleSave }) {
 
   return (
     <Box
-      w={['350px', '350px', '280px', '280px']}
-      h={['90%', '90%', '50%', '50%']}
-      minHeight="320px"
+      w={['320px', '300px', '280px', '280px']}
+      h={['90%', '90%', '80%', '80%']}
       mx="10px"
       my={['10px', '15px', '40px', '40px']}
       rounded="md"
@@ -47,25 +45,23 @@ export default function MovieTile({ film, handleSave }) {
       bg={bgColor[colorMode]}
     >
       {poster && (
-        <Link as={ReachLink} to={`/film/${film.episode_id}`}>
-          <Image
-            src={poster}
-            fallbackSrc={placeholder}
-            alt="star wars poster"
-            objectFit="fill"
-            w="100%"
-            h={['80%', '80%', '70%', '70']}
-            onClick={handleClick}
-          />
-        </Link>
+          <Link as={ReachLink} to={`/film/${film.episode_id}`}>
+            <Image
+              src={poster}
+              fallbackSrc={placeholder}
+              alt="star wars poster"
+              objectFit="fill"
+              w="100%"
+              h={['80%', '80%', '70%', '70%']}
+              onClick={handleClick}
+            />
+          </Link>
       )}
 
       <Box p={5}>
-        <Stack isInline align="baseline">
-          <Badge variant="solid" rounded="full" px={2} bg={bagdeBg[colorMode]}>
-            Episode {+film.episode_id}
-          </Badge>
-        </Stack>
+        <Badge variant="solid" rounded="full" px={2} bg={bagdeBg[colorMode]}>
+          Episode {+film.episode_id}
+        </Badge>
         <Flex alignItems="flex-start" justifyContent="space-between">
           <Text
             as="h2"

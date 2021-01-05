@@ -5,6 +5,7 @@ import * as apiClient from './helpers/apiClient';
 import { ChakraProvider } from '@chakra-ui/react';
 import { customTheme } from './styles/colorModes';
 import { Route, Switch } from 'react-router-dom';
+import ls from 'local-storage';
 import Home from './containers/Home';
 import FavFilms from './containers/FavFilms';
 import FavCharacter from './containers/FavCharacter';
@@ -16,8 +17,15 @@ function App() {
   const [, dispatch] = useContext(Context);
 
   useEffect(() => {
-    apiClient.getMovies(dispatch);
-    apiClient.getCharacterImages(dispatch);
+    apiClient.getMovies().then(apiResult => {
+      dispatch({ type: 'SET_ALL_FILMS', payload: apiResult.data.results });
+      ls.set('allFilms', apiResult.data.results);
+    });
+
+    apiClient.getCharacterImages().then(apiResult => {
+      dispatch({ type: 'SET_CHAR_IMAGES', payload: apiResult });
+      ls.set('allImages', apiResult);
+    });
   }, []);
 
   return (

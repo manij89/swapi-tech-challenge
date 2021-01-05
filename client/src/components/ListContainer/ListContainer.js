@@ -38,7 +38,7 @@ export default function ListContainer({ data }) {
     <Flex
       data-testid='list-container'
       m="10px"
-      h="90vh"
+      height={['90vh', '80vh', '60vh', '60vh']}
       overflowX="scroll"
       overflowY="hidden"
       flexWrap="nowrap"

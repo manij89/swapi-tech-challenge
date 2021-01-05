@@ -10,10 +10,10 @@ const ColorModeSwitcher = props => {
 
   return (
     <Image
-      w='40px'
-      h='40px'
+      w='45px'
+      h='45px'
       aria-label={`Switch to ${text} mode`}
-      marginRight={4}
+      margin={2}
       onClick={toggleColorMode}
       src={svgSt}
       {...props}

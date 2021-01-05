@@ -3,7 +3,7 @@
 exports[`register snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="css-5ysws4"
+    class="css-9gfchu"
   >
     <div
       class="css-rkk3mp"
@@ -74,7 +74,7 @@ exports[`register snapshot 1`] = `
     </p>
     <img
       aria-label="Switch to light mode"
-      class="chakra-image__placeholder css-d25thr"
+      class="chakra-image__placeholder css-1a8tnsp"
     />
   </div>
   <div
