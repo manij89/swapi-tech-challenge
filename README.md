@@ -12,11 +12,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Get Started
 
-To run this project locally, you have two options:
+The project is build in node v15.1.0
 
+To run this project locally, you have two options:
 ### `cd client && npm i && npm start`
 
-Runs the app in the development mode.<br />
+The client folder contains the CRA boilerplate. Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm i && npm start`
